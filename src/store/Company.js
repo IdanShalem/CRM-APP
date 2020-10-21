@@ -15,6 +15,7 @@ export default class company {
             emailsSents: computed,
             outstandingClients: computed,
             hottestCountry: computed,
+            topEmployees: computed,
             loadData: action,
             addClient: action,
             updateClient: action,
@@ -80,6 +81,10 @@ export default class company {
         })
 
         return returnedCountry;
+    }
+
+    get topEmployees() {
+        
     }
 
     loadData = (data) => {
