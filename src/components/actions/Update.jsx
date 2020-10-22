@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { observer, inject } from 'mobx-react'
 import ClientInput from './ClientInput'
 
@@ -8,13 +8,31 @@ const Update = inject('company')(observer((props) => {
 
     const [input, setInput] = useState({
         clientName: '',
-        owner: '',
-        emailType: '',
+        owner: 'default',
+        emailType: 'default',
         sold: true
     })
 
-    const handleChange = function(e) {
-        setInput({...input, [e.target.name]: e.target.value})
+    const [disableInput, setDisableInput] = useState('true')
+
+    const handleChange = (e) => {
+        setInput({ ...input, [e.target.name]: e.target.value })
+    }
+
+    useEffect(() => {
+        findClient()
+    }, [input.clientName])
+
+    const findClient = function() {
+        const clientFound = company.clients.find(c => c.name === input.clientName)
+        if(clientFound) {
+            setDisableInput(null)
+            setInput({ ...input, owner: clientFound.owner, emailType: clientFound.emailType })
+            console.log(disableInput)
+        } else {
+            setDisableInput('true')
+            setInput({ ...input, owner: 'default', emailType: 'default' })
+        } 
     }
 
     const handleClick = function(e) {
@@ -28,27 +46,55 @@ const Update = inject('company')(observer((props) => {
             <ClientInput input={input.clientName} handleChange={handleChange} />
             <div>
                 <label>Transfer owenership to:</label>
-                <select defaultValue='default' name='owner' onChange={handleChange}>
+                <select 
+                    value={input.owner}
+                    name='owner' 
+                    onChange={handleChange} 
+                    disabled={disableInput}
+                >
                     <option disabled value="default">Owner</option>
                     {company.allOwners.map(o => 
                         <option key={o} value={o}>{o}</option>
                     )}
                 </select>
-                <button onClick={handleClick} name='owner'>TRANSFER</button>
+                <button 
+                    onClick={handleClick} 
+                    name='owner' 
+                    disabled={disableInput}
+                >
+                    TRANSFER
+                </button>
             </div>
             <div>
                 <label>Send email:</label>
-                <select defaultValue='default' name='emailType' onChange={handleChange}>
+                <select 
+                    value={input.emailType}
+                    name='emailType' 
+                    onChange={handleChange} 
+                    disabled={disableInput}
+                >
                     <option disabled value="default">Email Type:</option>
                     {company.allEmailTypes.map(e => 
                         <option key={e} value={e}>{e}</option>
                     )}
                 </select>
-                <button onClick={handleClick} name='emailType'>SEND</button>
+                <button 
+                    onClick={handleClick} 
+                    name='emailType' 
+                    disabled={disableInput}
+                >
+                    SEND
+                </button>
             </div>
             <div>
                 <label>Declare Sale!</label>
-                <button onClick={handleClick} name='sold'>DECLARE</button>
+                <button 
+                    onClick={handleClick} 
+                    name='sold'
+                    disabled={disableInput}
+                >
+                    DECLARE
+                </button>
             </div>
         </div>
     )

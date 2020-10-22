@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import './App.css';
-import clientsData from './data.json'
 import NavBar from './components/layout/NavBar'
 import Container from './components/layout/Container'
 
@@ -11,7 +10,7 @@ const App = inject('company')(observer((props) => {
   const { company } = props
 
   useEffect(() => {
-    company.loadData(clientsData)
+    company.loadData()
   }, [])
 
   return (
@@ -21,8 +20,7 @@ const App = inject('company')(observer((props) => {
         <Container />
       </div>
     </Router>
-    
-  );
+  )
 }))
 
 export default App;

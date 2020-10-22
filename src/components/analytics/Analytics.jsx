@@ -4,6 +4,9 @@ import NewClients from './NewClients'
 import EmailsSents from './EmailsSents'
 import HottestCountry from './HottestCountry'
 import OutstandingClients from './OutstandingClients'
+import TopEmployee from './Charts/TopEmployee'
+import SalesByCountry from './Charts/SalesByCountry'
+import SalesByDay from './Charts/SalesByDay'
 
 
 const Analytics = inject('company')(observer((props) => {
@@ -16,6 +19,9 @@ const Analytics = inject('company')(observer((props) => {
             <EmailsSents />
             <OutstandingClients />
             <HottestCountry />
+            <TopEmployee />
+            <SalesByCountry />
+            <SalesByDay />
         </div>
     )
 }))

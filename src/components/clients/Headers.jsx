@@ -4,11 +4,12 @@ const Headers = (props) => {
 
     return (
         <div>
-            <span>Name</span>
-            <span>Country</span>
-            <span>First Contact</span>
-            <span>Email</span>
-            <span>Sold</span>
+            <span>First Name</span>&ensp;
+            <span>Surname</span>&ensp;
+            <span>Country</span>&ensp;
+            <span>First Contact</span>&ensp;
+            <span>Email</span>&ensp;
+            <span>Sold</span>&ensp;
             <span>Owner</span>
         </div>
     )

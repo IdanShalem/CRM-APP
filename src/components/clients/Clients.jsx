@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import Headers from './Headers'
-import Row from './Row'
+import Client from './Client'
 
 const Clients = inject('company')(observer((props) => {
 
@@ -13,8 +13,9 @@ const Clients = inject('company')(observer((props) => {
             <button>Submit</button>
             <Headers />
             {company.clients.length > 0
-                ? company.clients.map( c =>  <Row key={c.id} client={c} /> )
-                : 'HELLO WORLD'}
+                ? company.clients.map( c =>  <Client key={c.id} client={c} /> )
+                : 'HELLO WORLD'
+            }
         </div>
     )
 }))

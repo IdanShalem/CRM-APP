@@ -28,25 +28,25 @@ const data = [
   },
 ];
 
-const SalesByCountry = inject('company')(observer((props) => {
+const SalesByDay = inject('company')(observer((props) => {
 
   const { company } = props
 
-  const [salesByCountries, setSalesByCountries] = useState([])
+  const [salesByDay, setSalesByDay] = useState([])
 
-  const getCountries = async function() {
-    const countries = await company.getSalesByCountry()
-    return countries
+  const getSales = async function() {
+    const sales = await company.getSalesByDay()
+    return sales
   }
 
   useEffect(() => {
-    getCountries()
-      .then(countries => setSalesByCountries(countries))
+    getSales()
+      .then(sales => setSalesByDay(sales))
   }, [])
 
     return (
       <div>
-        {salesByCountries.map(c => <div>{c.name} - {c.sales}</div>)}
+        {salesByDay.map(s => <div>{s.day} - {s.sales}</div>)}
       </div>
         // <ResponsiveContainer width='100%'  >
         //     <BarChart
@@ -69,4 +69,4 @@ const SalesByCountry = inject('company')(observer((props) => {
     )
 })) 
 
-export default SalesByCountry
+export default SalesByDay

@@ -1,6 +1,9 @@
 import {observable, action, computed, makeObservable } from 'mobx'
 import Client from './Client'
 import moment from 'moment'
+import axios from 'axios'
+import storeService from './service/storeService'
+import SalesByDay from '../components/analytics/Charts/SalesByDay'
 
 export default class company {
 
@@ -15,7 +18,8 @@ export default class company {
             emailsSents: computed,
             outstandingClients: computed,
             hottestCountry: computed,
-            topEmployees: computed,
+            getTopEmployees: action,
+            getSalesByCountry: action,
             loadData: action,
             addClient: action,
             updateClient: action,
@@ -82,28 +86,48 @@ export default class company {
 
         return returnedCountry;
     }
-
-    get topEmployees() {
-        
-    }
-
-    loadData = (data) => {
-        data.forEach(c => {
-            const client = new Client(c._id, c.name, c.email, c.firstContact, c.emailType, c.sold, c.owner, c.country)
-            this.clients.push(client)
+    
+    loadData = async () => {
+        const clientsData = await storeService().getAllClients()
+        const newClients = []
+        clientsData.forEach(c => {
+            const sold = c.sold === 0 ? false : true 
+            const client = new Client(c.id, c.name, c.email, c.firstContact, c.emailType, sold, c.owner, c.country)
+            newClients.push(client)
         })
+        this.clients = newClients
+    }
+    
+    getTopEmployees = async () => {
+        const topEmployees = await storeService().getTopEmployees()
+        return topEmployees
     }
 
-    addClient(client) {
+    getSalesByCountry = async () => {
+        const countries = await storeService().getSalesByCountry()
+        return countries
+    }
+
+    getSalesByDay = async () => {
+        const date = new Date() 
+        const month = date.getMonth() + 1
+        const sealsByDay = await storeService().getSalseByDay(month)
+        return sealsByDay
+    }
+
+    addClient = async (client) => {
         const id = this._idMaker()
-        const firstContact = moment().format()
+        const firstContact = moment().format('YYYY-MM-DD HH:mm:ss')
         const { firstName, surName } = client
         const name = firstName + ' ' + surName
-        const newClient = new Client(id, name, client.email, firstContact, client.owner, client.country)
+        const newClient = new Client(id, name, client.email, firstContact, null, false, client.owner, client.country)
         this.clients.push(newClient)
+        await storeService().addNewClient(newClient)
+
     }
 
-    updateClient(clientName, property, value) {
+    updateClient = async (clientName, property, value) => {
+        await storeService().updateClient(clientName,property,value)
         const client = this.clients.find(c => c.name === clientName)
         client[property] = value
     }
