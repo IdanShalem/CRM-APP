@@ -4,6 +4,7 @@ const storeService = function() {
 
     const getAllClients = async function() {
         const clientsData = await axios.get('http://localhost:3001/clients')
+        clientsData.data.forEach(c => c.emailType === 'null' ? c.emailType = null : null )
         return clientsData.data
     }
 

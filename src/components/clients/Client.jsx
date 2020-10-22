@@ -1,22 +1,60 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+    },
+}))(TableRow)
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 14,
+    },
+}))(TableCell)
+
+const useStyles = makeStyles({
+    checkBox: {
+        color: '#f50057',
+    }
+})
 
 const Client = inject('company')(observer((props) => {
 
     const { company, client } = props
+    const classes = useStyles()
 
     const [firstName, surName] = client.name.split(' ')
 
+    const handleClick = function() {
+        props.handleClickOpen(client.name)
+    }
+
     return (
-        <div>
-            <span>{firstName}</span>&ensp;
-            <span>{surName}</span>&ensp;
-            <span>{client.country}</span>&ensp;
-            <span>{client.firstContact}</span>&ensp;
-            <span>{client.emailType ? client.emailType : '-'}</span>&ensp;
-            <span>{client.sold ? 'V' : 'X'}</span>&ensp;
-            <span>{client.owner}</span>
-        </div>
+        <StyledTableRow onClick={handleClick}>
+            <StyledTableCell align="left">{firstName}</StyledTableCell>
+            <StyledTableCell align="left">{surName}</StyledTableCell>
+            <StyledTableCell align="left">{client.country}</StyledTableCell>
+            <StyledTableCell align="left">{client.firstContact}</StyledTableCell>
+            <StyledTableCell align="left">{client.emailType ? client.emailType : '-'}</StyledTableCell>
+            <StyledTableCell align="left">
+                {client.sold
+                    ? <CheckBoxIcon className={classes.checkBox} />
+                    : <CheckBoxOutlineBlankIcon className={classes.checkBox} />}
+            </StyledTableCell>
+            <StyledTableCell align="left">{client.owner}</StyledTableCell>
+        </StyledTableRow>
     )
 }))
 
