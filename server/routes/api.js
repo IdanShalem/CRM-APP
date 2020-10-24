@@ -28,8 +28,9 @@ router.get('/salesByDay/:month', async function (req, res) {
 })
 
 router.put('/client', async function (req, res) {
+    
     const { clientName, property, value } = req.body
-    await dataBaseService().updateClient(clientName, property, value)
+    const updateClient = await dataBaseService().updateClient(clientName, property, value)
     res.send(updateClient)
 })
 

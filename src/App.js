@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react'
 import './App.css';
 import NavBar from './components/layout/NavBar'
 import Container from './components/layout/Container'
+import Grid from '@material-ui/core/Grid'
 
 const App = inject('company')(observer((props) => {
 
@@ -15,10 +16,10 @@ const App = inject('company')(observer((props) => {
 
   return (
     <Router>
-      <div className="App">
+      <Grid className="App" container justify='center'>
         <NavBar />
         <Container />
-      </div>
+      </Grid>
     </Router>
   )
 }))

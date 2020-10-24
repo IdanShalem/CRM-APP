@@ -42,7 +42,7 @@ const Client = inject('company')(observer((props) => {
     }
 
     return (
-        <StyledTableRow onClick={handleClick}>
+        <StyledTableRow onClick={handleClick} tabIndex={-1}>
             <StyledTableCell align="left">{firstName}</StyledTableCell>
             <StyledTableCell align="left">{surName}</StyledTableCell>
             <StyledTableCell align="left">{client.country}</StyledTableCell>

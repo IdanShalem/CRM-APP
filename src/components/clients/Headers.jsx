@@ -5,9 +5,12 @@ import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
 
 const StyledTableCell = withStyles((theme) => ({
+    container: {
+        boxShadow: '0px 20px 5px black'
+    },
     head: {
         backgroundColor: '#fbc02d',
-        color: theme.palette.common.white,
+        color: theme.palette.common.black
     },
     body: {
         fontSize: 14,

@@ -28,7 +28,6 @@ const Update = inject('company')(observer((props) => {
         if(clientFound) {
             setDisableInput(null)
             setInput({ ...input, owner: clientFound.owner, emailType: clientFound.emailType })
-            console.log(disableInput)
         } else {
             setDisableInput('true')
             setInput({ ...input, owner: 'default', emailType: 'default' })

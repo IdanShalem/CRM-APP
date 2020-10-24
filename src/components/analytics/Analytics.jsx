@@ -7,6 +7,8 @@ import OutstandingClients from './OutstandingClients'
 import TopEmployee from './Charts/TopEmployee'
 import SalesByCountry from './Charts/SalesByCountry'
 import SalesByDay from './Charts/SalesByDay'
+import { Grid } from '@material-ui/core'
+import ClientAcquisition from './Charts/ClientAcquistion'
 
 
 const Analytics = inject('company')(observer((props) => {
@@ -14,7 +16,7 @@ const Analytics = inject('company')(observer((props) => {
     const { company } = props
 
     return (
-        <div>
+        <Grid item xs={11}>
             <NewClients />
             <EmailsSents />
             <OutstandingClients />
@@ -22,7 +24,8 @@ const Analytics = inject('company')(observer((props) => {
             <TopEmployee />
             <SalesByCountry />
             <SalesByDay />
-        </div>
+            {/* <ClientAcquisition /> */}
+        </Grid>
     )
 }))
 

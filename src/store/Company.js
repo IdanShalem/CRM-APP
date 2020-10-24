@@ -18,8 +18,9 @@ export default class company {
             emailsSents: computed,
             outstandingClients: computed,
             hottestCountry: computed,
+            ClientAcquisition: computed,
             getTopEmployees: action,
-            getSalesByCountry: action,
+            getSalesByCountry: action,   
             loadData: action,
             addClient: action,
             updateClient: action,
@@ -86,6 +87,21 @@ export default class company {
 
         return returnedCountry;
     }
+
+    get ClientAcquisition() {
+        const clientsGroup = {}
+        const now = moment()
+        for(let client of this.clients) {
+            const clientJoin = moment(client.firstContact)
+            if(clientJoin.year() === now.year()) {
+
+            }
+            // const month = moment(client.firstContact).month() + 1
+            // console.log(month, now - month)
+        }
+        // this.clients.forEach(c => console.log(moment(c.firstContact).fromNow()))
+        return 1
+    }
     
     loadData = async () => {
         const clientsData = await storeService().getAllClients()
@@ -127,9 +143,9 @@ export default class company {
     }
 
     updateClient = async (clientName, property, value) => {
-        await storeService().updateClient(clientName,property,value)
         const client = this.clients.find(c => c.name === clientName)
         client[property] = value
+        await storeService().updateClient(clientName,property,value) 
     }
 
 }

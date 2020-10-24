@@ -1,19 +1,13 @@
 import React, { Fragment, useState } from 'react'
 import { observer, inject } from 'mobx-react'
 import Client from './Client'
-import { makeStyles } from '@material-ui/core/styles'
 import TableBody from '@material-ui/core/TableBody'
 import UpdatePopUp from './UpdatePopUp'
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 700,
-    },
-})
-
 const Rows = inject('company')(observer((props) => {
 
-    const { company } = props;
+    const { company, input, page, rowsPerPage } = props
+    
     const [client, setClient] = useState('')
 
     const [open, setOpen] = useState(false);
@@ -27,10 +21,12 @@ const Rows = inject('company')(observer((props) => {
 
     return (
         <Fragment>
-            <TableBody>
+            <TableBody >
                 {company.clients.length > 0
                     ? company
                         .clients
+                        .filter(c => c.name.toLowerCase().includes(input.toLowerCase()))
+                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map(c => <Client key={c.id} client={c} handleClickOpen={handleClickOpen} />)
                     : 'HELLO WORLD'
                 }

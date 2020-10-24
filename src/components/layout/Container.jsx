@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import {Route} from 'react-router-dom'
+import {Redirect, Route} from 'react-router-dom'
 import { observer } from 'mobx-react'
 import Clients from '../clients/Clients'
 import Actions from '../actions/Actions'
@@ -7,9 +7,12 @@ import Analytics from '../analytics/Analytics'
 
 const Container = observer((props) => {
 
-    return (
+    return (     
         <Fragment>
-            <Route exact path='/' 
+            <Route exact path='/'>
+                <Redirect to='/clients/0/10' />
+            </Route>
+            <Route exact path='/clients/:page/:rowsPerPage' 
                 render={({ match }) => 
                     <Clients 
                         match={match} 

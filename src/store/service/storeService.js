@@ -29,12 +29,10 @@ const storeService = function() {
     }
 
     const updateClient = async function (clientName, property, value) {
-        let updateClient
         if (property === 'emailType') {
-            let prop = 'email_type'
-             updateClient = await axios.put('http://localhost:3001/update', { clientName, prop, value })
+            property = 'email_type'
         }
-        updateClient = await axios.put('http://localhost:3001/update', { clientName, property, value })
+        const updateClient = await axios.put('http://localhost:3001/client', { clientName, property, value })
         return updateClient.data
     }
 

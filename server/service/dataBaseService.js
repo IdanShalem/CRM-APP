@@ -58,7 +58,7 @@ const dataBaseService = function() {
     }
 
     const updateClient = async (clientName, property, value) => {
-        if (property != 'sold' && property != 'name') {
+        if (property === 'email_type' || property === 'owner' || property === 'country') {
             const condition = property === 'email_type' ? 'type' : 'name';
             await sequelize.query(`
             UPDATE client
@@ -68,10 +68,16 @@ const dataBaseService = function() {
             WHERE name = '${clientName}'
             `)
         } else {
-            await sequelize.query(`
-            UPDATE client
-            SET ${property} = ${value}
-            WHERE name = '${clientName}'
+            property === 'sold' 
+            ?   await sequelize.query(`
+                    UPDATE client
+                    SET ${property} = ${value}
+                    WHERE name = '${clientName}'
+                `)
+            :   await sequelize.query(`
+                UPDATE client
+                SET ${property} = '${value}'
+                WHERE name = '${clientName}'
             `)
         }
     }
