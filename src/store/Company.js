@@ -1,9 +1,7 @@
 import {observable, action, computed, makeObservable } from 'mobx'
 import Client from './Client'
 import moment from 'moment'
-import axios from 'axios'
 import storeService from './service/storeService'
-import SalesByDay from '../components/analytics/Charts/SalesByDay'
 
 export default class company {
 
@@ -18,7 +16,6 @@ export default class company {
             emailsSents: computed,
             outstandingClients: computed,
             hottestCountry: computed,
-            ClientAcquisition: computed,
             getTopEmployees: action,
             getSalesByCountry: action,   
             loadData: action,
@@ -88,21 +85,6 @@ export default class company {
         return returnedCountry;
     }
 
-    get ClientAcquisition() {
-        const clientsGroup = {}
-        const now = moment()
-        for(let client of this.clients) {
-            const clientJoin = moment(client.firstContact)
-            if(clientJoin.year() === now.year()) {
-
-            }
-            // const month = moment(client.firstContact).month() + 1
-            // console.log(month, now - month)
-        }
-        // this.clients.forEach(c => console.log(moment(c.firstContact).fromNow()))
-        return 1
-    }
-    
     loadData = async () => {
         const clientsData = await storeService().getAllClients()
         const newClients = []
@@ -125,9 +107,9 @@ export default class company {
     }
 
     getSalesByDay = async () => {
-        const date = new Date() 
-        const month = date.getMonth() + 1
-        const sealsByDay = await storeService().getSalseByDay(month)
+        // const date = new Date() 
+        // const month = date.getMonth() + 1
+        const sealsByDay = await storeService().getSalseByDay()
         return sealsByDay
     }
 

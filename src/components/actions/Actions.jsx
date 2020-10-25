@@ -8,7 +8,7 @@ import { Grid } from '@material-ui/core'
 const Actions = inject('company')(observer((props) => {
 
     return (
-        <Grid>
+        <Grid item xs={11} container direction='column'>
             <Update />
             <Add />
         </Grid>

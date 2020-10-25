@@ -23,8 +23,11 @@ const storeService = function() {
         return countries.data
     }
 
-    const getSalseByDay = async function (month) {
-        const salseByDay = await axios.get(`http://localhost:3001/salesByDay/${month}`)
+    const getSalseByDay = async function (month = undefined) {
+        let salseByDay
+        month 
+            ?   salseByDay = await axios.get(`http://localhost:3001/salesByDay/${month}`)
+            :   salseByDay = await axios.get(`http://localhost:3001/salesByDay`)
         return salseByDay.data
     }
 

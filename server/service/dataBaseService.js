@@ -47,13 +47,23 @@ const dataBaseService = function() {
     }
 
     const getSalseByDay = async function (month) {
-        const salseByDay = await sequelize
-            .query(`
-                SELECT DAY(first_contact) AS day , COUNT(id) AS sales
-                FROM client
-                where MONTH(first_contact)="${month}" AND DAY(first_contact) BETWEEN "1" AND  "30"
-                GROUP BY DAY(first_contact)
-            `)
+        let salseByDay
+        month 
+        ?   salseByDay = await sequelize
+                .query(`
+                    SELECT DAY(first_contact) AS day , COUNT(id) AS sales
+                    FROM client
+                    where MONTH(first_contact)="${month}" AND DAY(first_contact) BETWEEN "1" AND  "31"
+                    GROUP BY DAY(first_contact)
+                `)
+        :   salseByDay = await sequelize
+                .query(`
+                    SELECT DAY(first_contact) AS day , COUNT(id) AS sales
+                    FROM client
+                    where DAY(first_contact) BETWEEN "1" AND  "31"
+                    GROUP BY DAY(first_contact)
+                `)
+        
         return salseByDay[0]
     }
 

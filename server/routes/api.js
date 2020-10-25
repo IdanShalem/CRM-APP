@@ -21,14 +21,13 @@ router.get('/salesByCountry', async function(req, res) {
     res.send(countries) 
 })
 
-router.get('/salesByDay/:month', async function (req, res) {
+router.get('/salesByDay/:month?', async function (req, res) {
     const { month } = req.params
     const salseByDay = await dataBaseService().getSalseByDay(month)
     res.send(salseByDay)
 })
 
 router.put('/client', async function (req, res) {
-    
     const { clientName, property, value } = req.body
     const updateClient = await dataBaseService().updateClient(clientName, property, value)
     res.send(updateClient)

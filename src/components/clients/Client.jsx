@@ -8,10 +8,11 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
+        cursor: 'pointer',
+        '&:nth-of-type(even)': {
+            backgroundColor: theme.palette.background.default,
         },
-    },
+    }
 }))(TableRow)
 
 const StyledTableCell = withStyles((theme) => ({
@@ -42,7 +43,7 @@ const Client = inject('company')(observer((props) => {
     }
 
     return (
-        <StyledTableRow onClick={handleClick} tabIndex={-1}>
+        <StyledTableRow onClick={handleClick} hover tabIndex={-1}>
             <StyledTableCell align="left">{firstName}</StyledTableCell>
             <StyledTableCell align="left">{surName}</StyledTableCell>
             <StyledTableCell align="left">{client.country}</StyledTableCell>

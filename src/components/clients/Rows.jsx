@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react'
 import Client from './Client'
 import TableBody from '@material-ui/core/TableBody'
 import UpdatePopUp from './UpdatePopUp'
+import { LinearProgress } from '@material-ui/core'
 
 const Rows = inject('company')(observer((props) => {
 
@@ -22,13 +23,12 @@ const Rows = inject('company')(observer((props) => {
     return (
         <Fragment>
             <TableBody >
-                {company.clients.length > 0
-                    ? company
-                        .clients
-                        .filter(c => c.name.toLowerCase().includes(input.toLowerCase()))
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map(c => <Client key={c.id} client={c} handleClickOpen={handleClickOpen} />)
-                    : 'HELLO WORLD'
+                {company
+                    .clients
+                    .filter(c => c.name.toLowerCase().includes(input.toLowerCase()))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map(c => <Client key={c.id} client={c} handleClickOpen={handleClickOpen} />)
+
                 }
                 <UpdatePopUp open={open} handleClose={handleClose} client={client} />
             </TableBody>

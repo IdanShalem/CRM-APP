@@ -24,6 +24,12 @@ const useStyles = makeStyles({
     container: {
         maxHeight: 550
     },
+    pagination: {
+        marginBottom: '15px'
+    },
+    headers: {
+        boxShadow: '0px 1px 3px black'
+    }
 })
 
 const Clients = inject('company')(observer((props) => {
@@ -48,30 +54,58 @@ const Clients = inject('company')(observer((props) => {
        history.push(`/clients/0/${event.target.value}`)
     }
 
-    const handleChange = function(e) {
-        setInput(e.target.value)
+    const handleChange = function(value) {
+        setInput(value)
+        history.push(`/clients/0/${rowsPerPage}`)
     }
 
     return (
         <Grid item xs={11} container className={classes.root}>
-            <ClientInput key='clientInput' input={input} handleChange={handleChange} />
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 50, 100]}
-                component="div"
-                count={company.clients.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
-            <TableContainer component={Paper} className={classes.container}>
-                <Table stickyHeader className={classes.table} aria-label="customized table">
-                    <TableHead>
-                        <Headers />
-                    </TableHead>
-                    <Rows input={input} page={page} rowsPerPage={rowsPerPage} />
-                </Table>
-            </TableContainer>
+            <Grid item xs={12} container className={classes.pagination} >
+                <ClientInput key='clientInput' input={input} handleChange={handleChange} />
+                <Grid item xs={7}>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 50, 100]}
+                        component="div"
+                        count={company
+                            .clients
+                            .filter(c => 
+                                c.name
+                                .toLowerCase()
+                                .includes(input.toLowerCase())
+                            )
+                            .length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        SelectProps={{
+                            MenuProps: {
+                              anchorOrigin: {
+                                vertical: "bottom",
+                                horizontal: "left"
+                              },
+                              getContentAnchorEl: null
+                            }
+                        }}
+                        onChangePage={handleChangePage}
+                        onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
+                </Grid>
+            </Grid>
+            {company.clients.length > 0
+                ?   <TableContainer component={Paper} className={classes.container}>
+                        <Table stickyHeader className={classes.table} aria-label="customized table">
+                            <TableHead className={classes.headers}>
+                                <Headers />
+                            </TableHead>
+                            <Rows input={input} page={page} rowsPerPage={rowsPerPage} />
+                        </Table>
+                    </TableContainer>
+                :   <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>}
+                
         </Grid>
     )
 }))
