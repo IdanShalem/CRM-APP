@@ -3,7 +3,6 @@ import { observer, inject } from 'mobx-react'
 import Client from './Client'
 import TableBody from '@material-ui/core/TableBody'
 import UpdatePopUp from './UpdatePopUp'
-import { LinearProgress } from '@material-ui/core'
 
 const Rows = inject('company')(observer((props) => {
 

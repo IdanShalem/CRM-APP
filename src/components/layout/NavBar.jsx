@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const NavBar = (props) => {
+const NavBar = () => {
 
     const classes = useStyles()
     let location = useLocation().pathname

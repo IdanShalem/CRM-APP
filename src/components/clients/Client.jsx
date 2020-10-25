@@ -1,5 +1,5 @@
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+import { observer } from 'mobx-react'
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
@@ -31,9 +31,9 @@ const useStyles = makeStyles({
     }
 })
 
-const Client = inject('company')(observer((props) => {
+const Client = observer((props) => {
 
-    const { company, client } = props
+    const { client } = props
     const classes = useStyles()
 
     const [firstName, surName] = client.name.split(' ')
@@ -57,6 +57,6 @@ const Client = inject('company')(observer((props) => {
             <StyledTableCell align="left">{client.owner}</StyledTableCell>
         </StyledTableRow>
     )
-}))
+})
 
 export default Client

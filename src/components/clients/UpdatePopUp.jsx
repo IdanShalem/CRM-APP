@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { inject, observer } from 'mobx-react';
 
 const UpdatePopUp = inject('company')(observer((props) => {
+    
     const { client, open, company } = props
 
     const [input, setInput] = useState({

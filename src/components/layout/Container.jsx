@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
 import {Redirect, Route} from 'react-router-dom'
-import { observer } from 'mobx-react'
 import Clients from '../clients/Clients'
 import Actions from '../actions/Actions'
 import Analytics from '../analytics/Analytics'
 
-const Container = observer((props) => {
+const Container = () => {
 
     return (     
         <Fragment>
@@ -35,6 +34,6 @@ const Container = observer((props) => {
             />
         </Fragment>
     )
-})
+}
 
 export default Container
