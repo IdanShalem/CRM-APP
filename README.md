@@ -26,23 +26,23 @@ In this page the manager can see all of the statistics about his clients and wor
 ## Technologies:
 
 ### Client-side:
-⋅⋅* React.JS
-⋅⋅* MobX
-⋅⋅* MobX-React
-⋅⋅* Axios
-⋅⋅* Material-UI
+* React.JS
+* MobX
+* MobX-React
+* Axios
+* Material-UI
 * Recharts
 
 ### Server-side:
-⋅⋅* Node.JS
-⋅⋅* Express
-⋅⋅* Sequielize
-⋅⋅* MySQL
+* Node.JS
+* Express
+* Sequielize
+* MySQL
 
 ## What's next:
-⋅⋅* Adding more parameters for flitering and searching.
-⋅⋅* The ability to sort the table by each column by a 
-⋅⋅* More options for charts and analytics.
-⋅⋅* Emailing service from the app.
+1. Adding more parameters for flitering and searching.
+2. The ability to sort the table by each column by a 
+3. More options for charts and analytics.
+4. Emailing service from the app.
 
 
