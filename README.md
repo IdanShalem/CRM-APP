@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CRP APP
 
-## Available Scripts
+CRM is a client Relationship Management system buillt with react. The system enables the manager a way to controll all clients data and activities. It also provides information about the workers of the company. It also includes a graphic analytics.
 
-In the project directory, you can run:
+## Running the project:
+1: Clone this repository into a local directory.
+2. Open the directory in a code editor.
+3. Open the terminal inside the main directory.
+4. Run `npm install` and than `npm start`.
+5. open another terminal and run `nodemon server`
 
-### `npm start`
+## Screen shots:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Clients List.
+In this page the manager can navigate through all of his clients. Search for clients with an autocomplete input and update information about each client.
+![alt text](https://github.com/IdanShalem/CRM-APP/blob/master/screenshots/Clients%20list.jpg "Clients list")
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Add or Update.
+In this page the manager can add a new client to his list and update email type or decalre a sell.
+![alt text](https://github.com/IdanShalem/CRM-APP/blob/master/screenshots/Add%20or%20update%20client.jpg "Add or update")
 
-### `npm test`
+### Analytics Dashboard.
+In this page the manager can see all of the statistics about his clients and workers.
+![alt text]https://github.com/IdanShalem/CRM-APP/blob/master/screenshots/Analytics%20dashboard.jpg "Analytics dashboard")
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies:
 
-### `npm run build`
+### Client-side:
+⋅⋅* React.JS
+⋅⋅* MobX
+⋅⋅* MobX-React
+⋅⋅* Axios
+⋅⋅* Material-UI
+* Recharts
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Server-side:
+⋅⋅* Node.JS
+⋅⋅* Express
+⋅⋅* Sequielize
+⋅⋅* MySQL
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## What's next:
+⋅⋅* Adding more parameters for flitering and searching.
+⋅⋅* The ability to sort the table by each column by a 
+⋅⋅* More options for charts and analytics.
+⋅⋅* Emailing service from the app.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
