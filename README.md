@@ -21,7 +21,7 @@ In this page the manager can add a new client to his list and update email type 
 
 ### Analytics Dashboard.
 In this page the manager can see all of the statistics about his clients and workers.
-![alt text]https://github.com/IdanShalem/CRM-APP/blob/master/screenshots/Analytics%20dashboard.jpg "Analytics dashboard")
+![alt text](https://github.com/IdanShalem/CRM-APP/blob/master/screenshots/Analytics%20dashboard.jpg "Analytics dashboard")
 
 ## Technologies:
 
