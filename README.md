@@ -41,7 +41,7 @@ In this page the manager can see all of the statistics about his clients and wor
 
 ## What's next:
 1. Adding more parameters for flitering and searching.
-2. The ability to sort the table by each column by a 
+2. The ability to sort the table by each column.
 3. More options for charts and analytics.
 4. Emailing service from the app.
 
