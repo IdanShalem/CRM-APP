@@ -3,7 +3,7 @@
 CRM is a client Relationship Management system buillt with react. The system enables the manager a way to controll all clients data and activities. It also provides information about the workers of the company. It also includes a graphic analytics.
 
 ## Running the project:
-1: Clone this repository into a local directory.
+1. Clone this repository into a local directory.
 2. Open the directory in a code editor.
 3. Open the terminal inside the main directory.
 4. Run `npm install` and than `npm start`.
